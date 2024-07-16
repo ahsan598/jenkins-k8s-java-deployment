@@ -11,7 +11,9 @@ First, we will create an AWS EC2 instance and install Jenkins on it. We will the
 ![Project Diagram](https://github.com/ahsan598/devops-project-2/blob/main/JenkinsSonarqubeDocker.png)
 
 
-### Implementation:
+The below steps will outline the process of deploying a website using Jenkins, Docker, SonarQube, GitHub, and EC2. By following these steps, we can set up a continuous integration and continuous deployment (CI/CD) pipeline that automates the entire deployment process, from code commit to production deployment. This ensures a streamlined, efficient, and reliable deployment pipeline for our web application.
+
+### Implementation steps:
 
 ##### 1. Setting Up the Environment
 
@@ -21,7 +23,6 @@ First, we will create an AWS EC2 instance and install Jenkins on it. We will the
 - Configure security groups to allow HTTP (port 80), HTTPS (port 443), and Jenkins (port 8080).
 
 1.2. Install Jenkins
-
 - Install Java:
 ```sh
 sudo yum update -y
@@ -48,7 +49,6 @@ sudo systemctl restart jenkins
 ```
 
 1.4. SonarQube Installation
-
 - Pull SonarQube Docker Image:
 ```sh
 docker pull sonarqube
@@ -66,14 +66,13 @@ docker run -d --name sonarqube -p 9000:9000 sonarqube
 - Clone Repository:
 
 ```sh
-git clone https://github.com/our-username/our-repository.git
+git clone https://github.com/your-username/your-repository.git
 cd your-repository
 ```
 
 ##### 3. Integrating Jenkins with GitHub
 
 3.1. Install GitHub Plugin:
-
 - Go to Jenkins Dashboard > Manage Jenkins > Manage Plugins > Available.
 - Search for "GitHub Integration Plugin" and install it.
 
@@ -86,7 +85,6 @@ cd your-repository
 ##### 4. Jenkins Pipeline Configuration
 
 4.1. Create Jenkins Pipeline Job:
-
 - Create a new pipeline job in Jenkins.
 - Configure the pipeline script to pull the code from GitHub and build it.
 - Pipeline Script (Jenkinsfile)  is added in repository
