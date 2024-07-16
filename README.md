@@ -17,8 +17,10 @@ First, we will create an AWS EC2 instance and install Jenkins on it. We will the
 
 1.1. Jenkins Installation on EC2
 - Launch EC2 Instance:
--- Use an Amazon Linux 2 or Ubuntu instance.
--- Configure security groups to allow HTTP (port 80), HTTPS (port 443), and Jenkins (port 8080).
+- Use an Amazon Linux 2 or Ubuntu instance.
+- Configure security groups to allow HTTP (port 80), HTTPS (port 443), and Jenkins (port 8080).
+
+1.2. Install Jenkins
 
 - Install Java:
 ```sh
@@ -33,9 +35,9 @@ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 sudo yum install jenkins -y
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
-1.2. Docker Installation
 ```
 
+1.3. Docker Installation
 - Install Docker:
 ```sh
 sudo yum install docker -y
@@ -45,7 +47,8 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
 
-1.3. SonarQube Installation
+1.4. SonarQube Installation
+
 - Pull SonarQube Docker Image:
 ```sh
 docker pull sonarqube
@@ -58,64 +61,59 @@ docker run -d --name sonarqube -p 9000:9000 sonarqube
 
 ##### 2. Configuring GitHub Repository
 
-Create a Repository:
+2.1. Create a Repository:
+- Create a new repository on GitHub for the web application.
+- Clone Repository:
 
-Create a new repository on GitHub for the web application.
-Clone Repository:
-
-sh
-Copy code
+```sh
 git clone https://github.com/our-username/our-repository.git
 cd your-repository
+```
 
 ##### 3. Integrating Jenkins with GitHub
 
-Install GitHub Plugin:
+3.1. Install GitHub Plugin:
 
-Go to Jenkins Dashboard > Manage Jenkins > Manage Plugins > Available.
-Search for "GitHub Integration Plugin" and install it.
-Configure GitHub Webhook:
+- Go to Jenkins Dashboard > Manage Jenkins > Manage Plugins > Available.
+- Search for "GitHub Integration Plugin" and install it.
 
-Go to your GitHub repository settings.
-Navigate to Webhooks and add a new webhook.
-Set the payload URL to http://<your-jenkins-server-ip>:8080/github-webhook/.
+3.2.  Configure GitHub Webhook:
+- Go to your GitHub repository settings.
+- Navigate to Webhooks and add a new webhook.
+- Set the payload URL to http://<your-jenkins-server-ip>:8080/github-webhook/.
+
 
 ##### 4. Jenkins Pipeline Configuration
 
-Create Jenkins Pipeline Job:
+4.1. Create Jenkins Pipeline Job:
 
-Create a new pipeline job in Jenkins.
-Configure the pipeline script to pull the code from GitHub and build it.
-Pipeline Script (Jenkinsfile):
-
+- Create a new pipeline job in Jenkins.
+- Configure the pipeline script to pull the code from GitHub and build it.
+- Pipeline Script (Jenkinsfile)  is added in repository
 
 #####  5. Dockerizing the Application
 
-Dockerfile:
+5.1.  Dockerfile:
+- Dockerfile  is added in repository
 
-Dockerfile
-Copy code
-FROM nginx:alpine
-COPY . /usr/share/nginx/html
-Build Docker Image:
+- Build Docker Image:
 
-sh
-Copy code
+```sh
 docker build -t your-docker-image-name .
+```
 
 ##### 6. SonarQube Quality Gate
 
-SonarQube Configuration:
-Access SonarQube at http://<your-ec2-ip>:9000.
-Set up a new project and generate a token.
-Add the token and project key in Jenkinsfile.
+6.1. SonarQube Configuration:
+- Access SonarQube at http://<your-ec2-ip>:9000.
+- Set up a new project and generate a token.
+- Add the token and project key in Jenkinsfile.
 
 ##### 7. Deployment to EC2
 
-EC2 Configuration:
+7.1. EC2 Configuration:
+- Ensure the EC2 instance has Docker installed.
+- Ensure security groups allow traffic on the necessary ports.
 
-Ensure the EC2 instance has Docker installed.
-Ensure security groups allow traffic on the necessary ports.
-Deploy Application:
-
-Use Jenkins to deploy the Docker image to the EC2 instance.
+7.2. Deploy Application:
+- Use Jenkins to deploy the Docker image to the EC2 instance.
