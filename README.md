@@ -20,9 +20,9 @@ The below steps will outline the process of deploying a website using Jenkins, D
 1.1. Jenkins Installation on EC2
 - Launch EC2 Instance:
 - Use an Amazon Linux 2 or Ubuntu instance.
-- Configure security groups to allow HTTP (port 80), HTTPS (port 443), and Jenkins (port 8080).
+- Configure security groups to allow HTTP (port 80), HTTPS (port 443), Jenkins (port 8080) and SonarQube (9000).
 
-1.2. Install Jenkins
+1.2. Jenkins Installation
 - Install Java:
 ```sh
 sudo yum update -y
@@ -111,7 +111,7 @@ docker build -t your-docker-image-name .
 
 7.1. EC2 Configuration:
 - Ensure the EC2 instance has Docker installed.
-- Ensure security groups allow traffic on the necessary ports.
+- Ensure security groups allow traffic on the necessary ports (Eg: 8081).
 
 7.2. Deploy Application:
 - Use Jenkins to deploy the Docker image to the EC2 instance.
