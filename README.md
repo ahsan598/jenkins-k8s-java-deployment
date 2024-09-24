@@ -24,7 +24,7 @@ Integrated a CI/CD pipeline with Jenkins for the automated deployment of a Java 
 
 ### II. Process Flow:
 
-![Project Diagram](https://github.com/ahsan598/devops-project-2/blob/main/JenkinsSonarqubeDocker.png)
+![Project Diagram](https://github.com/ahsan598/deploy_javaapp_on_K8s/blob/main/processflow.png)
 
 
 ### III. Implementation steps:
