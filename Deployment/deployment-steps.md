@@ -1,5 +1,5 @@
 ### Process Flow:
-![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/processflow.png)
+![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/Deployment/processflow.png)
 
 ### I. Implementation steps:
 #### 1. Setting Up the Environment
