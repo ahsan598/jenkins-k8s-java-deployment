@@ -2,11 +2,6 @@
 
 This project demonstrates how to build and deploy a **Java application** using a **CI/CD pipeline** integrated with **Jenkins**, and deploy it on a **Kubernetes cluster**. The pipeline ensures that every code commit goes through **code quality checks**, **build**, **artifact storage**, and **automated deployment** — all done seamlessly using industry-standard DevOps tools.
 
-
-### Process Flow:
-
-![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/processflow.png)
-
 ---
 
 ## 🧰 Tools & Technologies Used
@@ -19,7 +14,8 @@ This project demonstrates how to build and deploy a **Java application** using a
 | Nexus        | Artifact repository for storing built packages (e.g., `.jar` files)     |
 | Kubernetes   | Container orchestration for scalable application deployment             |
 | Docker       | Containerization of the Java application                                |
-| Git          | Source code version control                                              |
+| Trivy        | Vulnerability Scanner for Container Images                              |
+| Git          | Source code version control                                             |
 
 ---
 
