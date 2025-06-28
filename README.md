@@ -7,9 +7,9 @@ This project demonstrates how to build and deploy a **Java application** using a
 | Tool         | Purpose                                                                 |
 |--------------|-------------------------------------------------------------------------|
 | Jenkins      | CI/CD automation tool                                                   |
-| Maven        | Build and dependency management for Java applications                   |
 | SonarQube    | Static code analysis and code quality check                             |
 | Nexus        | Artifact repository for storing built packages (e.g., `.jar` files)     |
+| Maven        | Build and dependency management for Java applications                   |
 | Kubernetes   | Container orchestration for scalable application deployment             |
 | Docker       | Containerization of the Java application                                |
 | Trivy        | Vulnerability Scanner for Container Images                              |
@@ -19,11 +19,11 @@ This project demonstrates how to build and deploy a **Java application** using a
 
 ## 📌 Project Objectives
 
-- Automate the build and deployment process using Jenkins.
-- Perform code quality analysis using SonarQube.
-- Store build artifacts (e.g., JAR files) in Nexus Repository Manager.
-- Containerize the Java application using Docker.
-- Deploy the Dockerized application on a Kubernetes cluster.
+- Automate the build and deployment process using **Jenkins**.
+- Perform code quality analysis using **SonarQube**.
+- Store build artifacts (e.g., `JAR` files) in **Nexus** Repository Manager.
+- Containerize the Java application using **Docker**.
+- Deploy the Dockerized application on a **Kubernetes** cluster.
 - Ensure end-to-end DevOps flow from **code to production**.
 
 ---
@@ -54,13 +54,17 @@ This project demonstrates how to build and deploy a **Java application** using a
 
 ## 🔄 CI/CD Pipeline Workflow
 
+![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/Deployment/processflow.png)
+
 1. **Developer pushes code to Git**
 2. **Jenkins** gets triggered by a webhook (or polling)
 3. **SonarQube** scans the code for quality and vulnerabilities
 4. **Maven** builds the application and generates a `.jar` file
 5. Built artifact is **uploaded to Nexus Repository**
-6. **Docker** creates an image using the JAR and pushes it to DockerHub (or private registry)
-7. **Kubernetes** pulls the Docker image and deploys it using deployment YAMLs
+6. **Docker** builds an image using the JAR file.  
+7. **Trivy** performs a security scan on the built image to detect vulnerabilities.  
+8. If the scan passes, the image is pushed to **DockerHub** or a private registry. 
+9. **Kubernetes** pulls the Docker image and deploys it using Deployment yamls.
 
 ---
 
@@ -101,10 +105,10 @@ kubectl apply -f kubernetes/
 
 
 ✅ Benefits of This Project
- - Shows end-to-end automation of software delivery
- - Emphasizes DevOps best practices
- - Demonstrates real-world toolchain integration
- - Scalable and can be enhanced with Helm, ArgoCD, monitoring, etc.
+ - Shows **end-to-end automation** of software delivery
+ - Emphasizes **DevOps best practices**
+ - Demonstrates **real-world toolchain integration**
+ - Scalable and can be enhanced with **Helm, ArgoCD, monitoring, etc**
 
 
 📚 Learning Resources
@@ -116,9 +120,8 @@ kubectl apply -f kubernetes/
 - [Docker Docs](https://docs.docker.com/)
 
 
-🙌 Contributing
-This is a personal project aimed at learning and sharing. Feel free to fork it, explore it, or suggest improvements!
-
 ---
+
+🛠️ **This is a personal project aimed at learning purposes**
 
 **📚 Based on the tutorial by [@DevOps Shack](https://github.com/jaiswaladi246)**
