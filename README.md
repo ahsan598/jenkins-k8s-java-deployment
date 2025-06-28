@@ -54,7 +54,7 @@ This project demonstrates how to build and deploy a **Java application** using a
 
 ## 🔄 CI/CD Pipeline Workflow
 
-![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/Deployment/processflow.png)
+![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/deployment-steps/processflow.png)
 
 1. **Developer pushes code to Git**
 2. **Jenkins** gets triggered by a webhook (or polling)
