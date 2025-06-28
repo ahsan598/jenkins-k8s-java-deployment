@@ -2,9 +2,7 @@
 
 This project demonstrates how to build and deploy a **Java application** using a **CI/CD pipeline** integrated with **Jenkins**, and deploy it on a **Kubernetes cluster**. The pipeline ensures that every code commit goes through **code quality checks**, **build**, **artifact storage**, and **automated deployment** — all done seamlessly using industry-standard DevOps tools.
 
----
-
-## 🧰 Tools & Technologies Used
+### 🧰 Tools & Technologies Used
 
 | Tool         | Purpose                                                                 |
 |--------------|-------------------------------------------------------------------------|
@@ -116,3 +114,11 @@ kubectl apply -f kubernetes/
 - [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 - [Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 - [Docker Docs](https://docs.docker.com/)
+
+
+🙌 Contributing
+This is a personal project aimed at learning and sharing. Feel free to fork it, explore it, or suggest improvements!
+
+---
+
+**📚 Based on the tutorial by [@DevOps Shack](https://github.com/jaiswaladi246)**
