@@ -1,171 +1,122 @@
-# Deployed Java application on Kubernetes using Jenkins: 
+# 🚀 Java Application Deployment on Kubernetes with CI/CD Pipeline
 
-Integrated a CI/CD pipeline with Jenkins for the automated deployment of a Java application on Kubernetes. Utilized Nexus for artifact storage and Maven for build management, ensuring efficient deployment workflows. SonarQube was integrated into the pipeline for code quality analysis, enhancing the overall reliability and performance of the application.
-
-
-### I. Resources used in this project:
-
-**Kubernetes** (often abbreviated as K8s) is an open-source container orchestration platform designed to automate deploying, scaling, and managing containerized applications. It helps manage complex microservices architectures, allowing developers to deploy applications in a consistent and efficient manner. Kubernetes abstracts the underlying infrastructure and provides features such as load balancing, service discovery, storage orchestration, and self-healing capabilities (auto-restarting, auto-replacing, and auto-scaling).
-
-**Jenkins** is a popular open-source automation server that helps automate various tasks in the software development process, including building, testing, and deploying software.
-
-**Github** is a web-based platform for version control and collaboration, allowing developers to store, manage, and track changes in their code repositories using Git. It facilitates collaboration among teams and provides features for code review, issue tracking, and project management.
-
-**Sonarqube** is an open-source platform for continuous inspection of code quality. It performs automatic reviews of code to detect bugs, code smells, and security vulnerabilities in various programming languages.
-
-**Docker**  is a platform for developing, shipping, and running applications in containers. Containers are lightweight, portable, and provide an isolated environment for applications, making them ideal for microservices architecture.
-
-**Maven** is a build automation and project management tool primarily used for Java projects. It simplifies the process of building, managing, and deploying Java applications by providing a standard way to organize project structure, manage dependencies, and automate tasks. Maven uses an XML file called pom.xml (Project Object Model) to configure the project settings, dependencies, and build process.
-
-**Nexus**  is a repository manager that allows you to store and manage software components, binaries, and artifacts. It supports various formats, including Maven, Docker, npm, and more, providing a central location for all your dependencies.
-
-**Trivy** is a vulnerability scanner for containers and other artifacts. It detects vulnerabilities in your images, file systems, and Git repositories.
+This project demonstrates how to build and deploy a **Java application** using a **CI/CD pipeline** integrated with **Jenkins**, and deploy it on a **Kubernetes cluster**. The pipeline ensures that every code commit goes through **code quality checks**, **build**, **artifact storage**, and **automated deployment** — all done seamlessly using industry-standard DevOps tools.
 
 
-### II. Process Flow:
+### Process Flow:
 
-![Project Diagram](https://github.com/ahsan598/deploy_javaapp_on_K8s/blob/main/processflow.png)
+![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/processflow.png)
 
+---
 
-### III. Implementation steps:
+## 🧰 Tools & Technologies Used
 
-##### 1. Setting Up the Environment
+| Tool         | Purpose                                                                 |
+|--------------|-------------------------------------------------------------------------|
+| Jenkins      | CI/CD automation tool                                                   |
+| Maven        | Build and dependency management for Java applications                   |
+| SonarQube    | Static code analysis and code quality check                             |
+| Nexus        | Artifact repository for storing built packages (e.g., `.jar` files)     |
+| Kubernetes   | Container orchestration for scalable application deployment             |
+| Docker       | Containerization of the Java application                                |
+| Git          | Source code version control                                              |
 
-1.1. Jenkins Installation on EC2
-- Launch EC2 Instance:
-- Use an Amazon Linux 2 or Ubuntu instance.
-- Configure security groups to allow HTTP (port 80), Nexus (port 8081), Jenkins (port 8080), SonarQube (9000).
+---
 
-1.2. Jenkins Installation
-- Install Java:
-```sh
-sudo yum update -y
-sudo yum install java-1.8.0-openjdk-devel -y
+## 📌 Project Objectives
+
+- Automate the build and deployment process using Jenkins.
+- Perform code quality analysis using SonarQube.
+- Store build artifacts (e.g., JAR files) in Nexus Repository Manager.
+- Containerize the Java application using Docker.
+- Deploy the Dockerized application on a Kubernetes cluster.
+- Ensure end-to-end DevOps flow from **code to production**.
+
+---
+
+## 📁 Project Structure
+
+```
+.
+├── Jenkinsfile
+├── Dockerfile
+├── kubernetes/
+│ ├── deployment.yaml
+│ ├── service.yaml
+├── src/
+└── pom.xml
 ```
 
-- Install Jenkins
-```sh
-wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-sudo yum install jenkins -y
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
+### 📌 Description
+- **Jenkinsfile**: Contains the steps Jenkins uses for building, testing, and deploying the application.
+- **Dockerfile**: Used to create a container image of the application.
+- **kubernetes/**: Holds deployment manifests for running the app on a Kubernetes cluster.
+  - `deployment.yaml`: Specifies how the application pods should be deployed and managed.
+  - `service.yaml`: Exposes the application inside or outside the Kubernetes cluster.
+- **src/**: Contains the Java source code of the application.
+- **pom.xml**: Maven configuration file for managing dependencies, plugins, and build lifecycle.
+
+---
+
+## 🔄 CI/CD Pipeline Workflow
+
+1. **Developer pushes code to Git**
+2. **Jenkins** gets triggered by a webhook (or polling)
+3. **SonarQube** scans the code for quality and vulnerabilities
+4. **Maven** builds the application and generates a `.jar` file
+5. Built artifact is **uploaded to Nexus Repository**
+6. **Docker** creates an image using the JAR and pushes it to DockerHub (or private registry)
+7. **Kubernetes** pulls the Docker image and deploys it using deployment YAMLs
+
+---
+
+## ⚙️ How to Run the Project Locally (For Practice)
+
+> Note: These steps assume basic tools like Docker, Minikube (or any K8s cluster), and Jenkins are installed.
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/yourusername/java-k8s-ci-cd.git
+cd java-k8s-ci-cd
 ```
 
-1.3. Docker Installation
-- Install Docker:
-```sh
-sudo yum install docker -y
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo usermod -aG docker jenkins
-sudo systemctl restart jenkins
+2. **Build with Maven:**
+
+```bash
+mvn clean install
 ```
 
-1.4. SonarQube Installation
-- Pull SonarQube Docker Image:
-```sh
-docker pull sonarqube
+3. **Run SonarQube locally (if testing locally):**
+
+```bash
+docker run -d -p 9000:9000 sonarqube
 ```
 
-- Run SonarQube Container:
-```sh
-docker run -d --name sonarqube -p 9000:9000 sonarqube
+4. **Build Docker image:**
+
+```bash
+docker build -t yourusername/java-app:v1 .
 ```
 
-1.5. Trivy Installation
-- Install via Docker
-```sh
-docker pull aquasec/trivy:latest
-```
-- Verify trivy
-```sh
-trivy --version
-```
+5. **Deploy to Kubernetes:**
 
-1.6. Nexus Installation:
-- Install Nexus Repository
-```sh
-wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
-tar -xzvf latest-unix.tar.gz
-cd nexus-<version>
-sudo useradd -r -s /bin/false nexus
-sudo chown -R nexus:nexus /path/to/nexus-<version>
-sudo -u nexus /path/to/nexus-<version>/bin/nexus start
-```
-
-- Access Nexus
-```sh
-http://localhost:8081
-```
-
-
-##### 2. Configuring GitHub Repository
-
-2.1. Create a Repository:
-- Create a new repository on GitHub for the web application.
-- Clone Repository:
-
-```sh
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+```bash
+kubectl apply -f kubernetes/
 ```
 
 
-##### 3. Integrating Jenkins with GitHub, Docker, SonarQube, Nexus & Maven
-
-3.1. Install GitHub Plugin:
-- Go to Jenkins Dashboard > Manage Jenkins > Manage Plugins > Available.
-- Search for "GitHub Integration Plugin" and install it.
-
-3.2.  Configure GitHub Webhook:
-- Go to your GitHub repository settings.
-- Navigate to Webhooks and add a new webhook.
-- Set the payload URL to http://<your-jenkins-server-ip>:8080/github-webhook/.
+✅ Benefits of This Project
+ - Shows end-to-end automation of software delivery
+ - Emphasizes DevOps best practices
+ - Demonstrates real-world toolchain integration
+ - Scalable and can be enhanced with Helm, ArgoCD, monitoring, etc.
 
 
-Integrate the remaining tools by installing the necessary plugins and configuring them under the tools configuration settings.
-
-
-##### 4. Jenkins Pipeline Configuration
-
-4.1. Create Jenkins Pipeline Job:
-- Create a new pipeline job in Jenkins.
-- Configure the pipeline script to pull the code from GitHub and build it.
-- Pipeline Script (Jenkinsfile)  is added in repository
-
-#####  5. Dockerizing the Application
-
-5.1.  Dockerfile:
-- Dockerfile  is added in repository
-- Build Docker Image:
-```sh
-docker build -t your-docker-image-name .
-```
-
-##### 6. SonarQube Quality Gate
-
-6.1. SonarQube Configuration:
-- Access SonarQube at http://<your-ec2-ip>:9000.
-- Set up a new project and generate a token.
-- Add the token and project key in Jenkinsfile.
-
-##### 7. Deployment of application to Kubernetes
-
-7.1. Apply the Deployment and Service:
-- Use the kubectl command to deploy the application.
-```sh
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-```
-
-7.2. Verify the Deployment:
-- Check Pods Status:
-```sh
-kubectl get pods
-```
-
-- Check Services:
-```sh
-kubectl get services
-```
+📚 Learning Resources
+- [Jenkins Official Docs](https://www.jenkins.io/doc/)
+- [SonarQube Quickstart](https://docs.sonarsource.com/)
+- [Nexus Repository Guide](https://help.sonatype.com/repomanager3)
+- [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+- [Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+- [Docker Docs](https://docs.docker.com/)
