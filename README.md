@@ -16,7 +16,7 @@ This project demonstrates how to build and deploy a **Java application** using a
 | Trivy        | Vulnerability Scanner for Container Images                              |
 | Git          | Source code version control                                             |
 
-
+---
 
 ### 📌 Project Objectives
 
@@ -27,7 +27,7 @@ This project demonstrates how to build and deploy a **Java application** using a
 - Deploy the Dockerized application on a **Kubernetes** cluster.
 - Ensure end-to-end DevOps flow from **code to production**.
 
-
+---
 
 ### 📁 Project Structure
 
@@ -53,7 +53,7 @@ This project demonstrates how to build and deploy a **Java application** using a
 - **src/**: Contains the Java source code of the application.
 - **pom.xml**: Maven configuration file for managing dependencies, plugins, and build lifecycle.
 
-
+---
 
 ### 🔄 CI/CD Pipeline Workflow
 
@@ -69,7 +69,7 @@ This project demonstrates how to build and deploy a **Java application** using a
 8. If the scan passes, the image is pushed to **DockerHub** or a private registry. 
 9. **Kubernetes** pulls the Docker image and deploys it using Deployment yamls.
 
-
+---
 
 ### ⚙️ How to Run the Project Locally (For Practice)
 
@@ -106,8 +106,10 @@ docker build -t yourusername/java-app:v1 .
 kubectl apply -f kubernetes/
 ```
 
+---
 
 ### ✅ Benefits of This Project
+
  - Shows **end-to-end automation** of software delivery
  - Emphasizes **DevOps best practices**
  - Demonstrates **real-world toolchain integration**
@@ -115,6 +117,7 @@ kubectl apply -f kubernetes/
 
 
 ### 📚 Learning Resources
+
 - [Jenkins Official Docs](https://www.jenkins.io/doc/)
 - [SonarQube Quickstart](https://docs.sonarsource.com/)
 - [Nexus Repository Guide](https://help.sonatype.com/repomanager3)
