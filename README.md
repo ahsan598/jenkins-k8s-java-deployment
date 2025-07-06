@@ -2,6 +2,7 @@
 
 This project demonstrates how to build and deploy a **Java application** using a **CI/CD pipeline** integrated with **Jenkins**, and deploy it on a **Kubernetes cluster**. The pipeline ensures that every code commit goes through **code quality checks**, **build**, **artifact storage**, and **automated deployment** — all done seamlessly using industry-standard DevOps tools.
 
+
 ### 🧰 Tools & Technologies Used
 
 | Tool         | Purpose                                                                 |
@@ -15,9 +16,9 @@ This project demonstrates how to build and deploy a **Java application** using a
 | Trivy        | Vulnerability Scanner for Container Images                              |
 | Git          | Source code version control                                             |
 
----
 
-## 📌 Project Objectives
+
+### 📌 Project Objectives
 
 - Automate the build and deployment process using **Jenkins**.
 - Perform code quality analysis using **SonarQube**.
@@ -26,9 +27,9 @@ This project demonstrates how to build and deploy a **Java application** using a
 - Deploy the Dockerized application on a **Kubernetes** cluster.
 - Ensure end-to-end DevOps flow from **code to production**.
 
----
 
-## 📁 Project Structure
+
+### 📁 Project Structure
 
 ```
 .
@@ -41,7 +42,9 @@ This project demonstrates how to build and deploy a **Java application** using a
 └── pom.xml
 ```
 
-### 📌 Description
+
+### ⚙️ What This Project Does
+
 - **Jenkinsfile**: Contains the steps Jenkins uses for building, testing, and deploying the application.
 - **Dockerfile**: Used to create a container image of the application.
 - **kubernetes/**: Holds deployment manifests for running the app on a Kubernetes cluster.
@@ -50,9 +53,9 @@ This project demonstrates how to build and deploy a **Java application** using a
 - **src/**: Contains the Java source code of the application.
 - **pom.xml**: Maven configuration file for managing dependencies, plugins, and build lifecycle.
 
----
 
-## 🔄 CI/CD Pipeline Workflow
+
+### 🔄 CI/CD Pipeline Workflow
 
 ![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/deployment-steps/processflow.png)
 
@@ -66,9 +69,9 @@ This project demonstrates how to build and deploy a **Java application** using a
 8. If the scan passes, the image is pushed to **DockerHub** or a private registry. 
 9. **Kubernetes** pulls the Docker image and deploys it using Deployment yamls.
 
----
 
-## ⚙️ How to Run the Project Locally (For Practice)
+
+### ⚙️ How to Run the Project Locally (For Practice)
 
 > Note: These steps assume basic tools like Docker, Minikube (or any K8s cluster), and Jenkins are installed.
 
@@ -104,14 +107,14 @@ kubectl apply -f kubernetes/
 ```
 
 
-✅ Benefits of This Project
+### ✅ Benefits of This Project
  - Shows **end-to-end automation** of software delivery
  - Emphasizes **DevOps best practices**
  - Demonstrates **real-world toolchain integration**
  - Scalable and can be enhanced with **Helm, ArgoCD, monitoring, etc**
 
 
-📚 Learning Resources
+### 📚 Learning Resources
 - [Jenkins Official Docs](https://www.jenkins.io/doc/)
 - [SonarQube Quickstart](https://docs.sonarsource.com/)
 - [Nexus Repository Guide](https://help.sonatype.com/repomanager3)
