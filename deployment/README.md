@@ -94,7 +94,7 @@ cd your-repo
 
 ### GitHub Webhook:
 - Add a webhook in GitHub repo:
-  - Payload URL: http://<jenkins-ip>:8080/github-webhook/
+  - Payload URL: http://<$ your-jenkins-ip>:8080/github-webhook/
 
 ---
 
@@ -117,7 +117,7 @@ docker build -t <your-docker-image-name> .
 ---
 
 ### 7. ✅ SonarQube Quality Gate
-- Access: http://<ec2-ip>:9000
+- Access: http://<$ ec2-instance-ip>:9000
 - Create a project and generate a token
 - Add token & project key to Jenkinsfile
 
