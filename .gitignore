@@ -1,24 +1,77 @@
+# ===== Logs, Environment and System Files =====
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+*.pid
+.env
+.env.*
+
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+
+
+# ===== Code Editors =====
+*.vsix
+.idea/
+.history/
+.vscode/
+*.classpath
+*.project
+*.settings/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+
+# ===== Docker =====
+*.pid
+*.seed
+*.img
+docker-compose.override.yml
+
+
+# ==== Kubernetes  ====
+.kube/
+*.yaml~
+*.yml~
+*.kubeconfig
+k8s-secret*.yaml
+
+
+# ===== Jenkins =====
+jobs/
+secrets/
+.jenkins/
+.pipeline/
+/workspace/
+*.jenkinsfile.backup
+
+
+# ===== Maven =====
+.mvn/
 target/
-!.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.next
+release.properties
+pom.xml.releaseBackup
+pom.xml.versionsBackup
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+# ===== Java class files =====
+*.class
 
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
+# ===== Package files =====
+*.jar
+*.war
+*.ear
+
+# ==== Archives ====
+*.7z
+*.zip
+*.tgz
+*.rar
+*.tar.gz

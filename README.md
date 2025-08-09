@@ -35,7 +35,7 @@ This project demonstrates how to build and deploy a **Java application** using a
 .
 ├── Jenkinsfile
 ├── Dockerfile
-├── kubernetes/
+├── manifests/
 │ ├── deployment.yaml
 │ ├── service.yaml
 ├── src/
