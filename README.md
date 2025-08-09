@@ -1,4 +1,4 @@
-# 🚀 Java Application Deployment on Kubernetes with CI/CD Pipeline
+# 🚀 End-to-End CI/CD Pipeline for Deploying a Java Application to Kubernetes
 
 This project demonstrates how to build and deploy a **Java application** using a **CI/CD pipeline** integrated with **Jenkins**, and deploy it on a **Kubernetes cluster**. The pipeline ensures that every code commit goes through **code quality checks**, **build**, **artifact storage**, and **automated deployment** — all done seamlessly using industry-standard DevOps tools.
 
@@ -113,7 +113,6 @@ kubectl apply -f kubernetes/
  - Shows **end-to-end automation** of software delivery
  - Emphasizes **DevOps best practices**
  - Demonstrates **real-world toolchain integration**
- - Scalable and can be enhanced with **Helm, ArgoCD, monitoring, etc**
 
 
 ### 📚 Learning Resources
@@ -125,9 +124,9 @@ kubectl apply -f kubernetes/
 - [Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 - [Docker Docs](https://docs.docker.com/)
 
-
+<!-- 
 ---
 
 🛠️ **This is a personal project aimed at learning purposes**
 
-**📚 Based on the tutorial by [@DevOps Shack](https://github.com/jaiswaladi246)**
+**📚 Based on the tutorial by [@DevOps Shack](https://github.com/jaiswaladi246)** -->
