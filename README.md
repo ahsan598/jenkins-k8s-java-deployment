@@ -31,14 +31,16 @@ This project demonstrates how to build and deploy a **Java application** using a
 
 ### 📁 Project Structure
 
-```
+```sh
 .
-├── Jenkinsfile
 ├── Dockerfile
+├── Jenkinsfile
 ├── manifests/
 │ ├── deployment.yaml
 │ ├── service.yaml
 ├── src/
+│ ├── main/
+│ ├── test/
 └── pom.xml
 ```
 
