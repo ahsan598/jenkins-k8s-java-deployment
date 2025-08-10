@@ -64,7 +64,7 @@ jenkins-k8s-java-deployment/
 
 ### 🔄 CI/CD Pipeline Workflow
 
-![Project Diagram](https://github.com/ahsan598/java-k8s-deployment-pipeline-demo/blob/main/deployment/processflow.png)
+![Project Diagram](https://github.com/ahsan598/jenkins-k8s-java-deployment/blob/main/screenshots/processflow.png)
 
 1. **Developer pushes code to Git**
 2. **Jenkins** gets triggered by a webhook (or polling)
@@ -85,7 +85,7 @@ jenkins-k8s-java-deployment/
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/yourusername/java-k8s-ci-cd.git
+git clone https://github.com/ahsan598/jenkins-k8s-java-deployment.git
 cd java-k8s-ci-cd
 ```
 
@@ -112,6 +112,11 @@ docker build -t yourusername/java-app:v1 .
 ```bash
 kubectl apply -f kubernetes/
 ```
+
+
+### Deployment Setup
+
+If you want to install Jenkins, Docker, SonarQube, etc. on your instance, please follow the [deployment setup guide](./deployment/deployment-setup.md) here.
 
 
 ### 📚 What I Have Learned
