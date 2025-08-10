@@ -1,9 +1,28 @@
-# 🚀 End-to-End CI/CD Pipeline for Deploying a Java Application to Kubernetes
+# <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg" alt="Jenkins" width="40"/> End-to-End CI/CD Pipeline for Deploying a Java Application to Kubernetes
+
+[![Jenkins](https://img.shields.io/badge/Jenkins-D24939?logo=jenkins&logoColor=fff&style=for-the-badge)](#)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=fff&style=for-the-badge)](#)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge)](#)
+[![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=for-the-badge)](#)
+[![Nexus](https://img.shields.io/badge/Nexus-1B1F23?logo=sonatype&logoColor=fff&style=for-the-badge)](#)
+
+
 
 This project demonstrates how to build and deploy a **Java application** using a **CI/CD pipeline** integrated with **Jenkins**, and deploy it on a **Kubernetes cluster**. The pipeline ensures that every code commit goes through **code quality checks**, **build**, **artifact storage**, and **automated deployment** — all done seamlessly using industry-standard DevOps tools.
 
+---
 
-### 🧰 Tools & Technologies Used
+### 🎯 Objective
+
+- Automate the build and deployment process using **Jenkins**.
+- Perform code quality analysis using **SonarQube**.
+- Store build artifacts (e.g., `JAR` files) in **Nexus** Repository Manager.
+- Containerize the Java application using **Docker**.
+- Deploy the Dockerized application on a **Kubernetes** cluster.
+- Ensure end-to-end DevOps flow from **code to production**.
+
+
+### 🛠️ Tools Used
 
 | Tool         | Purpose                                                                 |
 |--------------|-------------------------------------------------------------------------|
@@ -16,23 +35,11 @@ This project demonstrates how to build and deploy a **Java application** using a
 | Trivy        | Vulnerability Scanner for Container Images                              |
 | Git          | Source code version control                                             |
 
----
-
-### 📌 Project Objectives
-
-- Automate the build and deployment process using **Jenkins**.
-- Perform code quality analysis using **SonarQube**.
-- Store build artifacts (e.g., `JAR` files) in **Nexus** Repository Manager.
-- Containerize the Java application using **Docker**.
-- Deploy the Dockerized application on a **Kubernetes** cluster.
-- Ensure end-to-end DevOps flow from **code to production**.
-
----
 
 ### 📁 Project Structure
 
-```sh
-.
+```
+jenkins-k8s-java-deployment/
 ├── Dockerfile
 ├── Jenkinsfile
 ├── manifests/
@@ -73,7 +80,7 @@ This project demonstrates how to build and deploy a **Java application** using a
 
 ---
 
-### ⚙️ How to Run the Project Locally (For Practice)
+### ⚙️ How to Run the Project Locally
 
 > Note: These steps assume basic tools like Docker, Minikube (or any K8s cluster), and Jenkins are installed.
 
@@ -108,16 +115,18 @@ docker build -t yourusername/java-app:v1 .
 kubectl apply -f kubernetes/
 ```
 
+
+### 📚 What I Have Learned
+
+- Built a complete CI/CD workflow using Jenkins to automate build, test, and deployment stages.
+- Packaged Java applications into Docker images and pushed them to a container registry.
+- Managed Kubernetes deployments using `kubectl` and **YAML** manifests.
+- Integrated Nexus Repository for artifact storage and version control.
+- Implemented Git-based source control with automated pipeline triggers on commits.
+
 ---
 
-### ✅ Benefits of This Project
-
- - Shows **end-to-end automation** of software delivery
- - Emphasizes **DevOps best practices**
- - Demonstrates **real-world toolchain integration**
-
-
-### 📚 Learning Resources
+### 🔗 Learning Resources
 
 - [Jenkins Official Docs](https://www.jenkins.io/doc/)
 - [SonarQube Quickstart](https://docs.sonarsource.com/)
@@ -125,10 +134,3 @@ kubectl apply -f kubernetes/
 - [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 - [Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 - [Docker Docs](https://docs.docker.com/)
-
-<!-- 
----
-
-🛠️ **This is a personal project aimed at learning purposes**
-
-**📚 Based on the tutorial by [@DevOps Shack](https://github.com/jaiswaladi246)** -->
