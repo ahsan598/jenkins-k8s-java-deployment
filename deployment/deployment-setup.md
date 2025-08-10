@@ -1,22 +1,25 @@
 # <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg" alt="Jenkins" width="40"/>  CI/CD Pipeline Deployment with Jenkins, SonarQube, Nexus, and Kubernetes
 
-This guide explains how to set up a CI/CD pipeline using Jenkins, SonarQube, Trivy, Nexus, and Docker, and then deploy the app to Kubernetes.
+This guide explains how to set up a CI/CD pipeline using **Jenkins, SonarQube, Trivy, Nexus, and Docker,** and then deploy the app to **Kubernetes**.
 
 ---
 
 ### 1. 🛠 Environment Setup on AWS EC2
-- Launch EC2 Instance:
-  - Use Amazon Linux 2 or Ubuntu
+- Launch **EC2 Instance**:
+  - Use **Amazon Linux 2 or Ubuntu 24.04**
   - Open these ports in the Security Group:
-    - `22` (SSH)
-    - `80` (HTTP)
-    - `8080` (Jenkins)
-    - `8081` (Nexus) 
-    - `9000` (Sonarqube)
+
+    | Service   | Port |
+    | --------- | ---- |
+    | SSH       | 22   |
+    | Jenkins   | 8080 |
+    | Nexus     | 8081 |
+    | SonarQube | 9000 |
+    | HTTP/App  | 80   |
 
 - SSH into the instance using **Git Bash**:
 ```sh
-ssh -i /path/to/key.pem ubuntu@<ec2-public-ip>
+ssh -i /path/to/key.pem ubuntu@< instance-id >
 ```
 
 **If you want to install Jenkins, Docker, SonarQube, and other required tools on your instance, please follow this deployment setup guide.**
@@ -33,7 +36,7 @@ sudo yum install jenkins -y
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
 ```
-> Access via: http://<ec2-public-ip>:8080
+> Access via: http://< instance-id >:8080
 
 
 **2. Docker**
@@ -51,7 +54,7 @@ sudo systemctl restart jenkins
 docker pull sonarqube
 docker run -d --name sonarqube -p 9000:9000 sonarqube
 ```
-> Access via: http://<ec2-public-ip>:9000
+> Access via: http://< instance-id >:9000
 
 **4. Trivy**
 ```sh
@@ -67,7 +70,7 @@ sudo useradd -r -s /bin/false nexus
 sudo chown -R nexus:nexus ./nexus-<version>
 sudo -u nexus ./nexus-<version>/bin/nexus start
 ```
-> Access via: http://<ec2-public-ip>:8081
+> Access via: http://< instance-id >:8081
 
 > **Note**: Make sure that ports `8080`, `8081`, and `9000` are open for inbound traffic in your EC2 instance’s security group. Otherwise, you won’t be able to access these services remotely via http://<ec2-public-ip>:<port>.
 
@@ -117,7 +120,7 @@ docker build -t <your-docker-image-name> .
 
 
 ### 7. ✅ SonarQube Quality Gate
-- Access SonarQube UI: http://<$ ec2-instance-ip>:9000
+- Access SonarQube UI: http://< ec2-instance-ip >:9000
 - Create a project and generate a token
 - Add token & project key to **Jenkinsfile**
 
@@ -138,19 +141,29 @@ kubectl get services
 
 ---
 
-### 📦 Summary of Required Ports
+### 🧾 Clean-Up Resources
 
-| Service   | Port |
-| --------- | ---- |
-| SSH       | 22   |
-| Jenkins   | 8080 |
-| Nexus     | 8081 |
-| SonarQube | 9000 |
-| HTTP/App  | 80   |
+- To stop all running services and clean up resources:
 
-
-### 🧾 Optional: Clean-Up
 ```sh
+# Stop SonarQube container
 docker stop sonarqube
+docker rm sonarqube
+
+# Stop Jenkins service
 sudo systemctl stop jenkins
+
+# Stop Nexus service (replace <version> with actual directory)
+sudo -u nexus ./nexus-< version >/bin/nexus stop
+
+# Optionally stop Docker service
+sudo systemctl stop docker
+
+# (If running Kubernetes pods/services)
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
+
+# Terminate the EC2 Instance
+aws ec2 terminate-instances --instance-ids <instance-id>
 ```
+
