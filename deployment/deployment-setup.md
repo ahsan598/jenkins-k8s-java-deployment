@@ -1,6 +1,7 @@
 # <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg" alt="Jenkins" width="40"/>  CI/CD Pipeline Deployment with Jenkins, SonarQube, Nexus, and Kubernetes
 
 This guide explains how to set up a CI/CD pipeline using **Jenkins, SonarQube, Trivy, Nexus, and Docker,** and then deploy the app to **Kubernetes**.
+If you want to install the required tools on your instance, please follow this deployment setup guide.
 
 ---
 
@@ -22,7 +23,6 @@ This guide explains how to set up a CI/CD pipeline using **Jenkins, SonarQube, T
 ssh -i /path/to/key.pem ubuntu@< instance-id >
 ```
 
-**If you want to install Jenkins, Docker, SonarQube, and other required tools on your instance, please follow this deployment setup guide.**
 
 ### 2. ⚙️ Install Required Tools
 
