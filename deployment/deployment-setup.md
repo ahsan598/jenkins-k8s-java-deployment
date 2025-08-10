@@ -1,6 +1,6 @@
-# 🚀 CI/CD Pipeline Deployment with Jenkins, SonarQube, Nexus, and Kubernetes
+# <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg" alt="Jenkins" width="40"/>  CI/CD Pipeline Deployment with Jenkins, SonarQube, Nexus, and Kubernetes
 
-This guide describes how to set up a CI/CD pipeline using Jenkins, SonarQube, Trivy, Nexus, and Docker, then deploy the app to Kubernetes.
+This guide explains how to set up a CI/CD pipeline using Jenkins, SonarQube, Trivy, Nexus, and Docker, and then deploy the app to Kubernetes.
 
 ---
 
@@ -19,11 +19,11 @@ This guide describes how to set up a CI/CD pipeline using Jenkins, SonarQube, Tr
 ssh -i /path/to/key.pem ubuntu@<ec2-public-ip>
 ```
 
----
+**If you want to install Jenkins, Docker, SonarQube, and other required tools on your instance, please follow this deployment setup guide.**
 
 ### 2. ⚙️ Install Required Tools
 
-### Jenkins
+**1. Jenkins**
 ```sh
 sudo yum update -y
 sudo yum install java-1.8.0-openjdk-devel -y
@@ -33,8 +33,10 @@ sudo yum install jenkins -y
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
 ```
+> Access via: http://<ec2-public-ip>:8080
 
-### Docker
+
+**2. Docker**
 ```sh
 sudo yum install docker -y
 sudo systemctl start docker
@@ -43,18 +45,20 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
 
-### SonarQube (Docker)
+**3. SonarQube**
+- Running as a container
 ```sh
 docker pull sonarqube
 docker run -d --name sonarqube -p 9000:9000 sonarqube
 ```
+> Access via: http://<ec2-public-ip>:9000
 
-### Trivy
+**4. Trivy**
 ```sh
 docker pull aquasec/trivy:latest
 ```
 
-### Nexus
+**5. Nexus**
 ```sh
 wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
 tar -xzvf latest-unix.tar.gz
@@ -63,10 +67,10 @@ sudo useradd -r -s /bin/false nexus
 sudo chown -R nexus:nexus ./nexus-<version>
 sudo -u nexus ./nexus-<version>/bin/nexus start
 ```
+> Access via: http://<ec2-public-ip>:8081
 
-> Access via: http://localhost:8081
+> **Note**: Make sure that ports `8080`, `8081`, and `9000` are open for inbound traffic in your EC2 instance’s security group. Otherwise, you won’t be able to access these services remotely via http://<ec2-public-ip>:<port>.
 
----
 
 ### 3. 🌐 GitHub Configuration
 - Create a GitHub repository and clone it:
@@ -76,62 +80,57 @@ cd your-repo
 ```
 
 ### 📁 Files to Include in Repo
-- `Dockerfile`
-- `Jenkinsfile`
-- `deployment.yaml`
-- `service.yaml`
+- **Dockerfile**
+- **Jenkinsfile**
+- **deployment.yaml**
+- **service.yaml**
 
----
 
 ### 4. 🔄 Integrate Jenkins with Tools
 
-### Jenkins Plugin Setup:
-- Jenkins Plugin Setup:
+**1. Jenkins Plugin Setup:**
+- Install the following Jenkins plugins:
   - GitHub Integration Plugin
   - Docker Pipeline
   - SonarQube Scanner
-  - Nexus Artifact Uploader (optional)
+  - Nexus Artifact Uploader
 
-### GitHub Webhook:
+**2. GitHub Webhook:**
 - Add a webhook in GitHub repo:
   - Payload URL: http://<$ your-jenkins-ip>:8080/github-webhook/
 
----
 
 ### 5. 🧪 Jenkins Pipeline
-- Create a Pipeline Job
-- Point to GitHub repository
-- Use a Jenkinsfile (already included in the repo)
+- Create a Pipeline Job in Jenkins
+- Link it to your GitHub repository
+- Use the included **Jenkinsfile** (from your repo)
 
----
 
 ### 6. 🐳 Dockerize the App
-- Dockerfile  is added in repository
+- Ensure **Dockerfile** is present in your repo.
 - Build Docker Image:
 ```sh
 docker build -t <your-docker-image-name> .
 ```
 
-> (Optional) Push to DockerHub or Nexus if configured.
+> Push to DockerHub or Nexus if configured.
 
----
 
 ### 7. ✅ SonarQube Quality Gate
-- Access: http://<$ ec2-instance-ip>:9000
+- Access SonarQube UI: http://<$ ec2-instance-ip>:9000
 - Create a project and generate a token
-- Add token & project key to Jenkinsfile
+- Add token & project key to **Jenkinsfile**
 
----
 
 ### 8. 🚢 Kubernetes Deployment
 
-### Deploy App
+- Deploy the Application
 ```sh
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 
-### Verify Deployment
+- Verify Deployment
 ```sh
 kubectl get pods
 kubectl get services
