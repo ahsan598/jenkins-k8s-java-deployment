@@ -116,7 +116,7 @@ kubectl apply -f kubernetes/
 
 ### Deployment Setup
 
-If you want to install Jenkins, Docker, SonarQube, etc. on your instance, please follow the [deployment setup guide](./deployment/deployment-setup.md) here.
+If you want to install Jenkins, Docker, SonarQube, etc. on your instance, please follow the [setup guide](./setup/setup.md) here.
 
 
 ### 📚 What I Have Learned
